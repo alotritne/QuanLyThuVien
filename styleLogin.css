@@ -6,7 +6,7 @@
 	align-items: center;
 	justify-content: center;
 	border-radius: 5%;
-	border: 2px solid #90d1ca;
+	border: 2px solid #096b68;
 	flex-direction: column;
 	margin: 0 auto;
 	box-shadow: 0 0 5px rgba(0, 115, 230, 0.3);
@@ -17,7 +17,7 @@
 	margin: 20px auto;
 	font-size: 30px;
 	border: none;
-	border-bottom: 2px solid #90d1ca;
+	border-bottom: 2px solid #096b68;
 	border-radius: 5px;
 	padding-left: 20px;
 }

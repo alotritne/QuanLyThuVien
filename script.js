@@ -1,3 +1,4 @@
+
 async function GetBooks(url, id) {
 	try {
 		const response = await fetch(url);
@@ -16,6 +17,7 @@ function renderBooks(books, id) {
 		item.className = "Book";
 		item.innerHTML = `
 					<img src="${book.img}" alt="" style="height: 250px"/>
+					<br>
 					<h3>${book.name}</h3>
 					<br>
 					<p style="font-size: 17px">Còn lại: ${book.available}</p>
@@ -25,9 +27,12 @@ function renderBooks(books, id) {
 		list.appendChild(item);
 	});
 }
+
+
 GetBooks("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/Books.json", "Books");
 GetBooks("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/newBooks.json", "newBooks");
 
+loadHTML("head", "components/head.html");
 const newBooks = document.getElementById("newBooks");
 const leftBtn = document.querySelector(".left-btn");
 const rightBtn = document.querySelector(".right-btn");
@@ -47,20 +52,11 @@ function submitForm(event) {
 	p.style.color = "#E55050";
 }
 
-const TK = [
-	{
-		username: "user",
-		password: "1",
-		role: "user",
-	},
-	{
-		username: "admin",
-		password: "2",
-		role: "admin",
-	},
-];
 
-function login() {
+
+async function login() {
+	const res = await fetch("./account.json");
+	const TK = await res.json();
 	const username = document.getElementById("username").value;
 	const password = document.getElementById("password").value;
 	const user = TK.find((user) => user.username === username && user.password === password);
@@ -95,4 +91,19 @@ async function loadHTML(id, url) {
 	}
 }
 
-loadHTML("head", "components/head.html");
+function addBook(){
+	const name = document.getElementById("name").value;
+	const author = document.getAnimations("author").value;
+	const introduce = document.getElementById("img").value;
+	const quality = document.getAnimations("quality").value;
+	window.open("http://127.0.0.1:3000/index.html", "_self")
+	const el = document.getElementById("addSach");
+	el.innerHTML = `<img src="${book.img}" alt="" style="height: 250px"/>
+					<h3>${book.name}</h3>
+					<br>
+					<p style="font-size: 17px">Còn lại: ${book.quality}</p>
+					<br>
+					<button ${book.quality === 0 ? "disabled" : "class='Borrow available'"} ${book.quality === 0 ? "" : `onclick = "alert('Mượn thành công ${book.name}')"`}>${book.quality === 0 ? "Hết sách" : "Mượn ngay"}</button>
+`;
+		list.appendChild(item);
+}

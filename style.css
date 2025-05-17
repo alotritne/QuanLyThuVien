@@ -149,7 +149,7 @@ hr {
 	text-align: center;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 	color: #222831;
-	margin: 0 20px;
+	margin: 0 auto;
 	animation: fadeIn 0.5s ease;
 }
 
@@ -234,3 +234,50 @@ h1 {
 		transform: translateY(0);
 	}
 }
+
+.mananger{
+	width: 600px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: #fffbde;
+	border-radius: 25px;
+	border: 3px solid #096b68;
+}
+.add h2{
+	font-size: 45px;
+	text-decoration: underline;
+	margin-bottom: 20px;
+}
+.add{
+	border-radius: 12px;
+	margin-top: 20px;
+}
+textarea{
+	width: 384px;
+    height: 115px;
+	resize: none;
+}
+.input input, .input textarea{
+	font-size: 35px;
+	border: 2px solid #096b68;
+	border-radius: 12px;
+	margin-bottom: 4px;
+}
+
+.add button{
+	font-size: 30px;
+	margin-top: 10px;
+	padding: 9px;
+	background-color: #096b68;
+	color: white;
+	border: none;
+	border-radius: 12px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background 0.3s;
+	margin-bottom: 10px;
+}
+
