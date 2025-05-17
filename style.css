@@ -18,7 +18,59 @@ body {
 	justify-content: center;
 	height: 90px;
 }
+h2 {
+	color: #096b68;
+	font-size: 35px;
+}
+.nav-button {
+	position: absolute;
+	top: 40%;
+	transform: translateY(-50%);
+	background: rgba(255, 255, 255, 0.8);
+	border: none;
+	font-size: 24px;
+	cursor: pointer;
+	z-index: 2;
+	padding: 4px 10px;
+	border-radius: 50%;
+}
 
+.left-btn {
+	left: -10px;
+}
+
+.right-btn {
+	right: -10px;
+}
+
+.new {
+	position: relative;
+}
+#newBooks {
+	display: flex;
+	overflow-x: auto;
+	scroll-behavior: smooth;
+	gap: 20px;
+	padding: 20px;
+}
+#newBooks::-webkit-scrollbar {
+	display: none; /* Ẩn trên Chrome, Safari */
+}
+
+#newBooks {
+	-ms-overflow-style: none; /* IE và Edge */
+	scrollbar-width: none; /* Firefox */
+}
+.newBook {
+	min-width: 200px;
+	flex-shrink: 0;
+	border-radius: 10px;
+	padding: 10px;
+	text-align: center;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	color: #222831;
+	animation: fadeIn 0.5s ease;
+}
 #nav a {
 	text-decoration: none;
 	color: black;
@@ -83,7 +135,7 @@ hr {
 }
 #Books {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(4, 1fr);
 	gap: 30px;
 	padding: 20px;
 	max-width: 1200px;
@@ -117,6 +169,15 @@ hr {
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
+}
+
+:disabled {
+	width: 100px;
+	height: 30px;
+	background-color: #bb8028;
+	color: white;
+	border: none;
+	border-radius: 5px;
 }
 .fa-solid {
 	color: #096b68;

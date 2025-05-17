@@ -1,15 +1,15 @@
-async function GetBooks() {
+async function GetBooks(url, id) {
 	try {
-		const response = await fetch("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/Books.json");
+		const response = await fetch(url);
 		const books = await response.json();
-		renderBooks(books);
+		renderBooks(books, id);
 	} catch (error) {
 		console.log(error);
 	}
 }
 
-function renderBooks(books) {
-	const list = document.getElementById("Books");
+function renderBooks(books, id) {
+	const list = document.getElementById(id);
 	list.innerHTML = "";
 	books.forEach((book) => {
 		const item = document.createElement("div");
@@ -17,15 +17,82 @@ function renderBooks(books) {
 		item.innerHTML = `
 					<img src="${book.img}" alt="" style="height: 250px"/>
 					<h3>${book.name}</h3>
-					<div class="sub"><span class="fa-solid fa-book"></span><button class="Borrow available" onclick="alert('Mượn thành công ${book.name}')">Mượn ngay</button></div>
+					<br>
+					<p style="font-size: 17px">Còn lại: ${book.available}</p>
+					<br>
+					<button ${book.available === 0 ? "disabled" : "class='Borrow available'"} ${book.available === 0 ? "" : `onclick = "alert('Mượn thành công ${book.name}')"`}>${book.available === 0 ? "Hết sách" : "Mượn ngay"}</button>
 `;
 		list.appendChild(item);
 	});
 }
-GetBooks();
+GetBooks("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/Books.json", "Books");
+GetBooks("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/newBooks.json", "newBooks");
+
+const newBooks = document.getElementById("newBooks");
+const leftBtn = document.querySelector(".left-btn");
+const rightBtn = document.querySelector(".right-btn");
+
+leftBtn.addEventListener("click", () => {
+	newBooks.scrollBy({ left: -300, behavior: "smooth" });
+});
+
+rightBtn.addEventListener("click", () => {
+	newBooks.scrollBy({ left: 300, behavior: "smooth" });
+});
+
 function submitForm(event) {
 	const p = document.getElementById("msg");
 	event.preventDefault();
 	p.innerHTML = `Gửi thông tin thành công, mình sẽ phản hồi trong thời gian sớm nhất`;
 	p.style.color = "#E55050";
 }
+
+const TK = [
+	{
+		username: "user",
+		password: "1",
+		role: "user",
+	},
+	{
+		username: "admin",
+		password: "2",
+		role: "admin",
+	},
+];
+
+function login() {
+	const username = document.getElementById("username").value;
+	const password = document.getElementById("password").value;
+	const user = TK.find((user) => user.username === username && user.password === password);
+	if (user) {
+		if (user.role === "admin") {
+			localStorage.setItem("loggedInUser", JSON.stringify(user));
+			window.location.href = "admin.html";
+		} else {
+			localStorage.setItem("loggedInUser", JSON.stringify(user));
+			window.location.href = "index.html";
+		}
+	} else {
+		alert("Sai tài khoản");
+	}
+}
+
+function logout() {
+	localStorage.removeItem("loggedInUser");
+	window.location.href = "login.html";
+}
+
+async function loadHTML(id, url) {
+	const response = await fetch(url);
+	const html = await response.text();
+	document.getElementById(id).innerHTML = html;
+	const el = document.getElementsByTagName("a");
+	for (i of el) {
+		if (i.href === window.location.href) {
+			i.style.color = "#096b68";
+			break;
+		}
+	}
+}
+
+loadHTML("head", "components/head.html");
