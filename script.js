@@ -92,7 +92,7 @@ async function login() {
 	if (user) {
 		if (user.role === "admin") {
 			localStorage.setItem("loggedInUser", JSON.stringify(user));
-			window.location.href = "./admin/admin.html";
+			window.location.href = "./admin";
 		} else {
 			localStorage.setItem("loggedInUser", JSON.stringify(user));
 			window.location.href = "home.html";
@@ -139,4 +139,28 @@ async function addBook() {
 					<br>
 `;
 	el.append(div);
+}
+
+async function renderInfor() {
+	try {
+		const resUsers = await fetch("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/admin/user.json");
+		const users = await resUsers.json();
+		const elUsers = document.getElementById("info");
+		users.forEach((user) => {
+			if (user.username === JSON.parse(localStorage.getItem("loggedInUser")).username) {
+				const item = document.createElement("div");
+				item.className = `infoUser textLeft`;
+				item.innerHTML = `
+					<h3>User: ${user.username}</h3>
+					<h3>Sách đã mượn: ${user.book}</h3>
+					<h3>Ngày trả: ${user.date}</h3>
+					<h3>Địa chi: ${user.address}</h3>
+					<h3>Số điện thoại: ${user.phone}</h3>
+			`;
+				elUsers.appendChild(item);
+			}
+		});
+	} catch (error) {
+		console.log(error);
+	}
 }

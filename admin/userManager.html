@@ -7,6 +7,12 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 		<link rel="stylesheet" href="styleAdmin.css" />
 		<title>Thư viện HIU</title>
+		<script>
+			const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+			if (!loggedInUser || loggedInUser.role !== "admin") {
+				window.location.href = "../index.html";
+			}
+		</script>
 	</head>
 	<body>
 		<div id="head"></div>
