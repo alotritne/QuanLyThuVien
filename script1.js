@@ -79,6 +79,6 @@ function removeBook(i) {
 	if (i >= 0 && i < books.length) {
 		const name = books[i].getElementsByTagName("h3")[0].innerText;
 		books[i].style.display = "none";
-		showPopup("✅ Xóa thành công: " + name);
+		showPopup("Xóa thành công: " + name);
 	}
 }

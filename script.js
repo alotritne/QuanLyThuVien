@@ -33,7 +33,7 @@ function renderBooks(books, id) {
   <p style="font-size: 17px">Còn lại: ${book.available}</p>
   <br>
   <button
-    ${book.available === 0 ? "disabled" : `class="Borrow available" onclick='showPopup("✅ Mượn sách thành công!\\n\\nCòn lại: ${book.available - 1}")'`}
+    ${book.available === 0 ? "disabled" : `class="Borrow available" onclick='showPopup("Mượn sách thành công!\\n\\nCòn lại: ${book.available - 1}")'`}
   >
     ${book.available === 0 ? "Hết sách" : "Mượn ngay"}
   </button>
