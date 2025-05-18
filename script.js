@@ -164,4 +164,3 @@ async function renderInfor() {
 		console.log(error);
 	}
 }
-renderInfor();
