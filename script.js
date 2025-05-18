@@ -70,6 +70,18 @@ function submitForm(event) {
 	p.innerHTML = `Gửi thông tin thành công, mình sẽ phản hồi trong thời gian sớm nhất`;
 	p.style.color = "#E55050";
 }
+const TK = [
+	{
+		username: "user",
+		password: "1",
+		role: "user",
+	},
+	{
+		username: "admin",
+		password: "2",
+		role: "admin",
+	},
+];
 
 async function login() {
 	const res = await fetch("./account.json");
@@ -83,7 +95,7 @@ async function login() {
 			window.location.href = "./admin/admin.html";
 		} else {
 			localStorage.setItem("loggedInUser", JSON.stringify(user));
-			window.location.href = "index.html";
+			window.location.href = "home.html";
 		}
 	} else {
 		alert("Sai tài khoản");
@@ -92,7 +104,7 @@ async function login() {
 
 function logout() {
 	localStorage.removeItem("loggedInUser");
-	window.location.href = "login.html";
+	window.location.href = "./login.html";
 }
 
 async function loadHTML(id, url) {

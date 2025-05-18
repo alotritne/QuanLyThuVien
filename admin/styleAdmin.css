@@ -30,3 +30,9 @@
 .textLeft {
 	text-align: left;
 }
+
+.blockUser:hover {
+	background-color: #096b68;
+	color: antiquewhite;
+	cursor: pointer;
+}

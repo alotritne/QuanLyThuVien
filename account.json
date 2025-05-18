@@ -8,5 +8,15 @@
 		"username": "admin",
 		"password": "2",
 		"role": "admin"
+	},
+	{
+		"username": "tuan",
+		"password": "1",
+		"role": "user"
+	},
+	{
+		"username": "thanh",
+		"password": "1",
+		"role": "user"
 	}
 ]

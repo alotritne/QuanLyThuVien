@@ -4,49 +4,28 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="styleLogin.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 		<title>Thư viện HIU</title>
+		<script>
+			const loggedInUser = localStorage.getItem("loggedInUser");
+			if (loggedInUser) {
+  				window.location.href = "home.html";
+			}
+		</script>
 	</head>
 	<body>
-		<div id="head"></div>
-		<hr />
+
+		</div>
 		<div class="content">
-			<h1>Thư viện</h1>
-			<hr />
-			<div class="new">
-				<div id="addSach"></div>
-				<h2>Sách mới</h2>
-				<button onclick="scrollLeft()" class="nav-button left-btn"><i class="fa-solid fa-chevron-left"></i></button>
-				<div id="newBooks">
-					<div class="Book newBook"></div>
-				</div>
-				<button onclick="scrollRight()" class="nav-button right-btn"><i class="fa-solid fa-chevron-right"></i></button>
-			</div>
-			<hr />
-			<br />
-			<h2>Sách cơ bản</h2>
-			<div id="Books">
-				<div class="Book"></div>
-			</div>
-		</div>
-		<div id="popup-Confirm" class="popup-overlay">
-			<div class="popup-box">
-				<p id="popup-Confirm-message"></p>
-				<button onclick="DongY()">Đồng ý</button>
-				<button onclick="closePopup('popup-Confirm')">Hủy</button>
-			</div>
-		</div>
-		<div id="popup" class="popup-overlay">
-			<div class="popup-box">
-				<div class="success-animation">
-					<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-						<circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-						<path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-					</svg>
-				</div>
-				<p id="popup-message"></p>
-				<button onclick="closePopup('popup')" style="font-size: 15px">Đóng</button>
-			</div>
+			<div class="form">
+				<h1>Login</h1>
+	            <div class="input">
+	            	<input id="username" type="text" placeholder="Username" required>
+		            <input id="password" type="password" placeholder="Password" required>
+	            </div>
+				<button onclick="login()">Login</button>
+	        </div>
 		</div>
 		<script src="script.js"></script>
 	</body>
