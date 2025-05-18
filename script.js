@@ -51,7 +51,7 @@ function renderBooks(books, id) {
 GetBooks("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/Books.json", "Books");
 GetBooks("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/newBooks.json", "newBooks");
 
-loadHTML("head", "components/head.html");
+loadHTML("head", "./components/head.html");
 const newBooks = document.getElementById("newBooks");
 const leftBtn = document.querySelector(".left-btn");
 const rightBtn = document.querySelector(".right-btn");
@@ -80,7 +80,7 @@ async function login() {
 	if (user) {
 		if (user.role === "admin") {
 			localStorage.setItem("loggedInUser", JSON.stringify(user));
-			window.location.href = "admin.html";
+			window.location.href = "./admin/admin.html";
 		} else {
 			localStorage.setItem("loggedInUser", JSON.stringify(user));
 			window.location.href = "index.html";

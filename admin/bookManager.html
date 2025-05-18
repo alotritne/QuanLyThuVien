@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../style.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+		<link rel="stylesheet" href="styleAdmin.css" />
+		<title>Thư viện HIU</title>
+	</head>
+	<body>
+		<div id="head"></div>
+		<hr />
+		<div class="content">
+			<h1>Quản lí thư viện</h1>
+			<div id="addSach"></div>
+			<div class="mananger">
+				<div class="add">
+					<h2>Thêm sách</h2>
+					<div class="input">
+						<input type="text" name="name" id="name" placeholder="Tên sách" required /> <br />
+						<input type="text" name="author" id="author" placeholder="Tác giả" required /> <br />
+						<textarea name="introduce" id="introduce" cols="9" rows="5" placeholder="Giới thiệu sách"></textarea> <br />
+						<input type="text" name="img" id="img" placeholder="Link ảnh" /><br />
+						<input type="text" name="quality" id="quality" placeholder="Số lượng" required /> <br />
+					</div>
+					<button onclick="addBook()">Submit</button>
+				</div>
+				<div class="remove">
+					<h2>Xóa sách</h2>
+					<div id="listBooks"></div>
+				</div>
+			</div>
+		</div>
+		<div id="popup-ConfirmRemove" class="popup-overlay">
+			<div class="popup-box">
+				<p id="popup-ConfirmRemove-message"></p>
+				<button>Đồng ý</button>
+				<button onclick="closePopup(`popup-ConfirmRemove`)">Hủy</button>
+			</div>
+		</div>
+		<div id="popupRemove" class="popup-overlay">
+		<div class="popup-box">
+				<div class="success-animation">
+					<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+						<circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+						<path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+					</svg>
+				</div>
+			<p id="popupRemove-message"></p>
+			<button onclick="closePopup('popupRemove')" style="font-size: 15px">Đóng</button>
+		</div>
+		<script src="admin.js"></script>
+		<script src="script1.js"></script>
+	</body>
+</html>
