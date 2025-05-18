@@ -1,13 +1,15 @@
 [
 	{
 		"username": "tuan",
-		"Sách đã mượn": ["BẠCH DẠ HÀNH", "HOMO DEUS LƯỢC SỬ TƯƠNG LAI", "THANH XUÂN, SAO MÀ ĐAU ĐỚN!", "KẾT THÚC CỦA CHÚNG TA"],
+		"book": "BẠCH DẠ HÀNH",
+		"date": "25/5/2025",
 		"address": "123 Điện biên phủ",
 		"phone": "0123456789"
 	},
 	{
 		"username": "thanh",
-		"Sách đã muien": ["RỪNG NAUY", "ĐIỀU KỲ DIỆU CỦA TIỆM TẠP HÓA NAMIYA", "MIẾNG NGON HÀ NỘI", "MỘT THOÁNG TA RỰC RỠ Ở NHÂN GIAN"],
+		"book": "RỪNG NAUY",
+		"date": "29/5/2025",
 		"address": "123 Điện biên phủ",
 		"phone": "0123456789"
 	}

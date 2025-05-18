@@ -88,7 +88,7 @@ countBooks();
 
 async function countUser() {
 	try {
-		const resUser = await fetch("");
+		const resUser = await fetch("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/admin/user.json");
 		const user = await resUser.json();
 		const block = document.getElementsByClassName("block")[1];
 		block.innerHTML = `<h1>Tổng user: ${user.length}</h1>`;
@@ -96,3 +96,26 @@ async function countUser() {
 		console.log(error);
 	}
 }
+countUser();
+async function renderUser() {
+	try {
+		const resUsers = await fetch("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/admin/user.json");
+		const users = await resUsers.json();
+		const elUsers = document.getElementById("user");
+		users.forEach((user) => {
+			const item = document.createElement("div");
+			item.className = `blockUser textLeft`;
+			item.innerHTML = `
+					<h3>User: ${user.username}</h3>
+					<h3>Sách đã mượn: ${user.book}</h3>
+					<h3>Ngày trả: ${user.date}</h3>
+					<h3>Địa chi: ${user.address}</h3>
+					<h3>Số điện thoại: ${user.phone}</h3>
+			`;
+			elUsers.appendChild(item);
+		});
+	} catch (error) {
+		console.log(error);
+	}
+}
+renderUser();

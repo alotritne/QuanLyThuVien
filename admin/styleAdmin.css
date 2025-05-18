@@ -16,13 +16,17 @@
 	color: #096b68;
 }
 
-.block {
+.block,
+.blockUser {
 	width: 450px;
 	border-radius: 10px;
 	padding: 10px;
 	text-align: center;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 	color: #222831;
-	margin: 0 auto;
+	margin: 10px auto;
 	animation: fadeIn 0.5s ease;
+}
+.textLeft {
+	text-align: left;
 }
