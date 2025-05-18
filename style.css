@@ -133,7 +133,7 @@ hr {
 	flex-wrap: wrap;
 	animation: fadeIn 0.5s ease;
 }
-#Books {
+#Books, #listBooks {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 30px;
@@ -235,7 +235,7 @@ h1 {
 	}
 }
 
-.mananger{
+.add{
 	width: 600px;
 	margin: 0 auto;
 	display: flex;
@@ -281,3 +281,28 @@ textarea{
 	margin-bottom: 10px;
 }
 
+.content #addSach{
+	
+	width: 500px;
+}
+#addSach{
+	margin: 0 auto;
+	
+}
+#addSach .Book{
+	margin-bottom: 100px;
+}
+
+.removeBtn{
+	font-size: 20px;
+	margin-top: 10px;
+	padding: 9px;
+	background-color: #ef3009;
+	color: white;
+	border: none;
+	border-radius: 12px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background 0.3s;
+	margin-bottom: 10px;
+}

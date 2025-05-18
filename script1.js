@@ -32,3 +32,43 @@ function logout() {
 	localStorage.removeItem("loggedInUser");
 	window.location.href = "login.html";
 }
+async function GetBooksAdmin(url, id) {
+	try {
+		const response = await fetch(url);
+		const books = await response.json();
+		renderBooksAdmin(books, id);
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+function renderBooksAdmin(books, id) {
+	const list = document.getElementById(id);
+	list.innerHTML = "";
+	let i = 0;
+	books.forEach((book) => {
+		const item = document.createElement("div");
+		item.className = "Book";
+		item.innerHTML = `
+					<img src="${book.img}" alt="" style="height: 250px"/>
+					<br>
+					<h3>${book.name}</h3>
+					<br>
+					<p style="font-size: 17px">Còn lại: ${book.available}</p>
+					<br>
+					<button class="removeBtn" onclick="removeBook(${i})">Xóa ngay</button>
+`;
+		i++;
+		list.appendChild(item);
+	});
+}
+
+GetBooksAdmin("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/Books.json", "listBooks");
+function removeBook(i) {
+    const books = document.getElementsByClassName("Book");
+    if (i >= 0 && i < books.length) {
+		const name = books[i].getElementsByTagName("h3")[0].innerText;
+        books[i].style.display = "none";
+		alert(`"Xóa thành công ${name}"`);
+    }
+}

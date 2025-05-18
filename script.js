@@ -91,19 +91,24 @@ async function loadHTML(id, url) {
 	}
 }
 
-function addBook(){
+async function addBook(){
 	const name = document.getElementById("name").value;
-	const author = document.getAnimations("author").value;
-	const introduce = document.getElementById("img").value;
-	const quality = document.getAnimations("quality").value;
-	window.open("http://127.0.0.1:3000/index.html", "_self")
+	const author = document.getElementById("author").value;
+	const img = document.getElementById("img").value;
+	const quality = document.getElementById("quality").value;
 	const el = document.getElementById("addSach");
-	el.innerHTML = `<img src="${book.img}" alt="" style="height: 250px"/>
-					<h3>${book.name}</h3>
+	const div = document.createElement("div");
+	div.className = "Book";
+	div.innerHTML = `
+					<h1>Thêm thành công</h1>
+					<img src="${img}" alt="" style="height: 250px"/>
+					<h3>${name}</h3>
 					<br>
-					<p style="font-size: 17px">Còn lại: ${book.quality}</p>
+					<p style="font-size: 17px">Còn lại: ${quality}</p>
 					<br>
-					<button ${book.quality === 0 ? "disabled" : "class='Borrow available'"} ${book.quality === 0 ? "" : `onclick = "alert('Mượn thành công ${book.name}')"`}>${book.quality === 0 ? "Hết sách" : "Mượn ngay"}</button>
+					<button ${quality === 0 ? "disabled" : "class='Borrow available'"} ${quality === 0 ? "" : `onclick = "alert('Mượn thành công ${name}')"`}>${quality === 0 ? "Hết sách" : "Mượn ngay"}</button>
+					<br>
 `;
-		list.appendChild(item);
+	el.append(div);
 }
+
