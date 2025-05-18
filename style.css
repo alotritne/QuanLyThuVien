@@ -145,6 +145,7 @@ hr {
 }
 
 .Book {
+	width: 200px;
 	border-radius: 10px;
 	padding: 10px;
 	text-align: center;
@@ -188,6 +189,10 @@ hr {
 
 .Book img {
 	border-radius: 5px;
+	/* max-width: 100%; */
+	width: 165px;
+	height: auto;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 h3 {
