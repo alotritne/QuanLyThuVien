@@ -9,7 +9,7 @@
 		<title>Thư viện HIU</title>
 		<script>
 			const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-			if (!loggedInUser) {
+			if (!loggedInUser || loggedInUser.role !== "admin") {
 				window.location.href = "../index.html";
 			}
 		</script>
