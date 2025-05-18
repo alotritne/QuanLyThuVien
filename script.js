@@ -1,3 +1,13 @@
+function showPopup(message) {
+	const popup = document.getElementById("popup");
+	const msg = document.getElementById("popup-message");
+	msg.innerText = message;
+	popup.style.display = "flex";
+}
+
+function closePopup() {
+	document.getElementById("popup").style.display = "none";
+}
 
 async function GetBooks(url, id) {
 	try {
@@ -16,18 +26,21 @@ function renderBooks(books, id) {
 		const item = document.createElement("div");
 		item.className = "Book";
 		item.innerHTML = `
-					<img src="${book.img}" alt="" style="height: 250px"/>
-					<br>
-					<h3>${book.name}</h3>
-					<br>
-					<p style="font-size: 17px">Còn lại: ${book.available}</p>
-					<br>
-					<button ${book.available === 0 ? "disabled" : "class='Borrow available'"} ${book.available === 0 ? "" : `onclick = "alert('Mượn thành công ${book.name}')"`}>${book.available === 0 ? "Hết sách" : "Mượn ngay"}</button>
+  <img src="${book.img}" alt="" style="height: 250px" />
+  <br>
+  <h3>${book.name}</h3>
+  <br>
+  <p style="font-size: 17px">Còn lại: ${book.available}</p>
+  <br>
+  <button
+    ${book.available === 0 ? "disabled" : `class="Borrow available" onclick='showPopup("✅ Mượn sách thành công!\\n\\nCòn lại: ${book.available - 1}")'`}
+  >
+    ${book.available === 0 ? "Hết sách" : "Mượn ngay"}
+  </button>
 `;
 		list.appendChild(item);
 	});
 }
-
 
 GetBooks("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/Books.json", "Books");
 GetBooks("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/newBooks.json", "newBooks");
@@ -51,8 +64,6 @@ function submitForm(event) {
 	p.innerHTML = `Gửi thông tin thành công, mình sẽ phản hồi trong thời gian sớm nhất`;
 	p.style.color = "#E55050";
 }
-
-
 
 async function login() {
 	const res = await fetch("./account.json");
@@ -91,7 +102,7 @@ async function loadHTML(id, url) {
 	}
 }
 
-async function addBook(){
+async function addBook() {
 	const name = document.getElementById("name").value;
 	const author = document.getElementById("author").value;
 	const img = document.getElementById("img").value;
@@ -111,4 +122,3 @@ async function addBook(){
 `;
 	el.append(div);
 }
-

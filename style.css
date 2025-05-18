@@ -133,7 +133,8 @@ hr {
 	flex-wrap: wrap;
 	animation: fadeIn 0.5s ease;
 }
-#Books, #listBooks {
+#Books,
+#listBooks {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 30px;
@@ -235,7 +236,7 @@ h1 {
 	}
 }
 
-.add{
+.add {
 	width: 600px;
 	margin: 0 auto;
 	display: flex;
@@ -246,28 +247,30 @@ h1 {
 	border-radius: 25px;
 	border: 3px solid #096b68;
 }
-.add h2{
+.add h2 {
 	font-size: 45px;
 	text-decoration: underline;
 	margin-bottom: 20px;
 }
-.add{
+.add {
 	border-radius: 12px;
 	margin-top: 20px;
 }
-textarea{
+textarea {
 	width: 384px;
-    height: 115px;
+	height: 115px;
 	resize: none;
 }
-.input input, .input textarea{
+.input input,
+.input textarea {
 	font-size: 35px;
 	border: 2px solid #096b68;
 	border-radius: 12px;
 	margin-bottom: 4px;
 }
 
-.add button{
+.add button,
+.popup-box button {
 	font-size: 30px;
 	margin-top: 10px;
 	padding: 9px;
@@ -281,19 +284,17 @@ textarea{
 	margin-bottom: 10px;
 }
 
-.content #addSach{
-	
+.content #addSach {
 	width: 500px;
 }
-#addSach{
+#addSach {
 	margin: 0 auto;
-	
 }
-#addSach .Book{
+#addSach .Book {
 	margin-bottom: 100px;
 }
 
-.removeBtn{
+.removeBtn {
 	font-size: 20px;
 	margin-top: 10px;
 	padding: 9px;
@@ -305,4 +306,27 @@ textarea{
 	cursor: pointer;
 	transition: background 0.3s;
 	margin-bottom: 10px;
+}
+
+.popup-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: none; /* Ẩn mặc định */
+	justify-content: center;
+	align-items: center;
+	z-index: 999;
+	animation: fadeIn 0.5s ease;
+}
+
+.popup-box {
+	background: white;
+	padding: 20px 30px;
+	border-radius: 10px;
+	text-align: center;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+	animation: fadeIn 0.5s ease;
 }

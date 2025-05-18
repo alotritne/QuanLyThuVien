@@ -64,11 +64,21 @@ function renderBooksAdmin(books, id) {
 }
 
 GetBooksAdmin("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/Books.json", "listBooks");
+function showPopup(message) {
+	const popup = document.getElementById("popup");
+	const msg = document.getElementById("popup-message");
+	msg.innerText = message;
+	popup.style.display = "flex";
+}
+
+function closePopup() {
+	document.getElementById("popup").style.display = "none";
+}
 function removeBook(i) {
-    const books = document.getElementsByClassName("Book");
-    if (i >= 0 && i < books.length) {
+	const books = document.getElementsByClassName("Book");
+	if (i >= 0 && i < books.length) {
 		const name = books[i].getElementsByTagName("h3")[0].innerText;
-        books[i].style.display = "none";
-		alert(`"Xóa thành công ${name}"`);
-    }
+		books[i].style.display = "none";
+		showPopup("✅ Xóa thành công: " + name);
+	}
 }
