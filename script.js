@@ -1,14 +1,20 @@
-function showPopup(message) {
-	const popup = document.getElementById("popup");
-	const msg = document.getElementById("popup-message");
+function showPopup(message, pop, popMSG) {
+	const popup = document.getElementById(pop);
+	const msg = document.getElementById(popMSG);
 	msg.innerText = message;
 	popup.style.display = "flex";
 }
 
-function closePopup() {
-	document.getElementById("popup").style.display = "none";
+function closePopup(popup) {
+	document.getElementById(popup).style.display = "none";
 }
-
+function MuonSach(name) {
+	showPopup(`Bạn có chắc chắn muốn mượn ${name} không? `, "popup-Confirm", "popup-Confirm-message");
+}
+function DongY() {
+	closePopup("popup-Confirm");
+	showPopup("Mượn thành công", "popup", "popup-message");
+}
 async function GetBooks(url, id) {
 	try {
 		const response = await fetch(url);
@@ -33,7 +39,7 @@ function renderBooks(books, id) {
   <p style="font-size: 17px">Còn lại: ${book.available}</p>
   <br>
   <button
-    ${book.available === 0 ? "disabled" : `class="Borrow available" onclick='showPopup("Mượn sách thành công!\\n\\nCòn lại: ${book.available - 1}")'`}
+    ${book.available === 0 ? "disabled" : `class="Borrow available" onclick='MuonSach("${book.name}")'`}
   >
     ${book.available === 0 ? "Hết sách" : "Mượn ngay"}
   </button>

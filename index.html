@@ -29,6 +29,13 @@
 				<div class="Book"></div>
 			</div>
 		</div>
+		<div id="popup-Confirm" class="popup-overlay">
+			<div class="popup-box">
+				<p id="popup-Confirm-message"></p>
+				<button onclick="DongY()">Đồng ý</button>
+				<button onclick="closePopup('popup-Confirm')">Hủy</button>
+			</div>
+		</div>
 		<div id="popup" class="popup-overlay">
 			<div class="popup-box">
 				<div class="success-animation">
@@ -38,7 +45,7 @@
 					</svg>
 				</div>
 				<p id="popup-message"></p>
-				<button onclick="closePopup()" style="font-size: 15px">Đóng</button>
+				<button onclick="closePopup('popup')" style="font-size: 15px">Đóng</button>
 			</div>
 		</div>
 		<script src="script.js"></script>

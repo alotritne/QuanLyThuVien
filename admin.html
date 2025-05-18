@@ -31,7 +31,14 @@
 				</div>
 			</div>
 		</div>
-		<div id="popup" class="popup-overlay">
+		<div id="popup-ConfirmRemove" class="popup-overlay">
+			<div class="popup-box">
+				<p id="popup-ConfirmRemove-message"></p>
+				<button>Đồng ý</button>
+				<button onclick="closePopup(`popup-ConfirmRemove`)">Hủy</button>
+			</div>
+		</div>
+		<div id="popupRemove" class="popup-overlay">
 		<div class="popup-box">
 				<div class="success-animation">
 					<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
@@ -39,8 +46,8 @@
 						<path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
 					</svg>
 				</div>
-			<p id="popup-message"></p>
-			<button onclick="closePopup()" style="font-size: 15px">Đóng</button>
+			<p id="popupRemove-message"></p>
+			<button onclick="closePopup('popupRemove')" style="font-size: 15px">Đóng</button>
 		</div>
 		<script src="script.js"></script>
 		<script src="script1.js"></script>
