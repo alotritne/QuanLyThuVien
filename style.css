@@ -5,6 +5,29 @@
 	margin: 0;
 }
 
+body.background::before {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f");
+	background-size: cover;
+	background-position: center;
+	filter: blur(8px);
+	z-index: -1;
+}
+
+.content {
+	max-width: 80%;
+	margin: 50px auto;
+	flex-wrap: wrap;
+	animation: fadeIn 0.5s ease;
+	position: relative;
+	z-index: 1;
+}
+
 body {
 	padding: 0;
 	margin: 0;
@@ -128,12 +151,6 @@ hr {
 	width: 100%;
 }
 
-.content {
-	max-width: 80%;
-	margin: 50px auto;
-	flex-wrap: wrap;
-	animation: fadeIn 0.5s ease;
-}
 #Books,
 #listBooks {
 	display: grid;

@@ -1,12 +1,13 @@
 .form {
 	height: 500px;
 	width: 500px;
-	background-color: #fffbde;
+	background: #fe5d26;
+	background: linear-gradient(130deg, rgba(254, 93, 38, 1) 0%, rgba(242, 192, 120, 1) 50%, rgba(250, 237, 202, 1) 100%);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	border-radius: 5%;
-	border: 2px solid #096b68;
+	border: 2px solid #5e3908;
 	flex-direction: column;
 	margin: 0 auto;
 	box-shadow: 0 0 5px rgba(0, 115, 230, 0.3);
@@ -37,6 +38,7 @@
 
 h1 {
 	font-weight: bold;
+	color: #2a4759;
 	text-shadow: 0 0 5px rgba(0, 115, 230, 0.3);
 }
 
