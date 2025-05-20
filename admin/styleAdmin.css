@@ -16,6 +16,11 @@
 	color: #096b68;
 }
 
+#user {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 20px;
+}
 .block,
 .blockUser {
 	width: 450px;
@@ -35,4 +40,10 @@
 	background-color: #096b68;
 	color: antiquewhite;
 	cursor: pointer;
+}
+#user img {
+	height: 120px;
+	border-radius: 10px;
+	float: left;
+	margin-right: 10px;
 }

@@ -106,7 +106,7 @@ async function renderUser() {
 			const item = document.createElement("div");
 			item.className = `blockUser textLeft`;
 			item.innerHTML = `
-					<img src="${user.img}" alt="" style="weight: 150px, float: left"/>
+					<img src="${user.img}" alt=""/>
 					<h3>User: ${user.username}</h3>
 					<h3>Sách đã mượn: ${user.book}</h3>
 					<h3>Ngày trả: ${user.date}</h3>
