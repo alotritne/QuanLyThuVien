@@ -34,7 +34,7 @@ function renderBooks(books, id) {
 		item.innerHTML = `
   <img src="${book.img}" alt="" style="height: 250px" />
   <br>
-  <a href="./book.html?id=${book.id}&type=${book.type}"><h3>${book.name}</h3></a>
+  <a href="./book.html?id=${book.id}&type=${id}"><h3>${book.name}</h3></a>
   <br>
   <p style="font-size: 17px">Còn lại: ${book.available}</p>
   <br>
