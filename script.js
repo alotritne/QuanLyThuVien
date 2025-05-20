@@ -164,6 +164,12 @@ async function renderInfor() {
 		console.log(error);
 	}
 }
+function capitalizeWords(str) {
+	return str
+		.split(" ")
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+		.join(" ");
+}
 function info() {
 	const params = new URLSearchParams(window.location.search);
 	const bookId = parseInt(params.get("id"));
@@ -180,10 +186,10 @@ function info() {
 				if (book) {
 					document.getElementById("image").src = book.img;
 					document.getElementById("title").textContent = book.name;
-					document.getElementById("author").textContent = book.author;
+					document.getElementById("author").textContent = capitalizeWords(book.author);
 					document.getElementById("year").textContent = book.release_date;
-					document.getElementById("translator").textContent = book.translator;
-					document.getElementById("publisher").textContent = book.publisher;
+					document.getElementById("translator").textContent = capitalizeWords(book.translator);
+					document.getElementById("publisher").textContent = capitalizeWords(book.publisher);
 					document.getElementById("pages").textContent = book.pages;
 					document.getElementById("description").textContent = book.description;
 				} else {
