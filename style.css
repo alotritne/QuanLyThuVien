@@ -410,3 +410,7 @@ textarea {
 		box-shadow: inset 0px 0px 0px 30px #4bb71b;
 	}
 }
+.Book a {
+	text-decoration: none;
+	color: #064240;
+}

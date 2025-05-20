@@ -164,3 +164,34 @@ async function renderInfor() {
 		console.log(error);
 	}
 }
+function info() {
+	const params = new URLSearchParams(window.location.search);
+	const bookId = parseInt(params.get("id"));
+	const type = params.get("type");
+	if (!type || isNaN(bookId)) {
+		document.body.innerHTML = "<h2>Thiếu thông tin ID hoặc loại sách.</h2>";
+	} else {
+		const jsonFile = `${type}.json`; // Ví dụ: programming.json, novel.json
+
+		fetch(jsonFile)
+			.then((response) => response.json())
+			.then((data) => {
+				const book = data.find((b) => b.id === bookId);
+				if (book) {
+					document.getElementById("image").src = book.img;
+					document.getElementById("title").textContent = book.name;
+					document.getElementById("author").textContent = book.author;
+					document.getElementById("year").textContent = book.release_date;
+					document.getElementById("translator").textContent = book.translator;
+					document.getElementById("publisher").textContent = book.publisher;
+					document.getElementById("pages").textContent = book.pages;
+					document.getElementById("description").textContent = book.description;
+				} else {
+					document.body.innerHTML = "<h2>Không tìm thấy sách.</h2>";
+				}
+			})
+			.catch((err) => {
+				document.body.innerHTML = `<h2>Lỗi khi tải dữ liệu: ${err}</h2>`;
+			});
+	}
+}
