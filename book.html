@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Thông tin sách</title>
+		<meta charset="UTF-8" />
+	</head>
+	<body>
+		<img id="image" src="" alt="" width="200" />
+		<h1 id="title"></h1>
+		<p><strong>Tác giả:</strong> <span id="author"></span></p>
+		<p><strong>Năm xuất bản:</strong> <span id="year"></span></p>
+		<p><strong>Dịch giả:</strong> <span id="translator"></span></p>
+		<p><strong>Nhà xuất bản:</strong> <span id="publisher"></span></p>
+		<p><strong>Số trang:</strong> <span id="pages"></span></p>
+		<p><strong>Mô tả:</strong> <span id="description"></span></p>
+
+		<script>
+			const params = new URLSearchParams(window.location.search);
+			const bookId = parseInt(params.get("id"));
+			const type = params.get("type");
+
+			if (!type || isNaN(bookId)) {
+				document.body.innerHTML = "<h2>Thiếu thông tin ID hoặc loại sách.</h2>";
+			} else {
+				const jsonFile = `${type}.json`; // Ví dụ: programming.json, novel.json
+
+				fetch(jsonFile)
+					.then((response) => response.json())
+					.then((data) => {
+						const book = data.find((b) => b.id === bookId);
+						if (book) {
+							document.getElementById("image").src = book.img;
+							document.getElementById("title").textContent = book.name;
+							document.getElementById("author").textContent = book.author;
+							document.getElementById("year").textContent = book.release_date;
+							document.getElementById("translator").textContent = book.translator;
+							document.getElementById("publisher").textContent = book.publisher;
+							document.getElementById("pages").textContent = book.pages;
+							document.getElementById("description").textContent = book.description;
+						} else {
+							document.body.innerHTML = "<h2>Không tìm thấy sách.</h2>";
+						}
+					})
+					.catch((err) => {
+						document.body.innerHTML = `<h2>Lỗi khi tải dữ liệu: ${err}</h2>`;
+					});
+			}
+		</script>
+	</body>
+</html>
