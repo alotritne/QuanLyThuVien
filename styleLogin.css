@@ -11,7 +11,8 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: rgba(255, 255, 255, 0.8);
+	background: #096b68;
+	background: linear-gradient(20deg, rgba(9, 107, 104, 1) 0%, rgba(18, 153, 144, 1) 50%, rgba(144, 209, 202, 1) 100%);
 }
 .form {
 	width: 15%;
