@@ -10,7 +10,6 @@ async function GetBooksAdmin(url, id) {
 
 function renderBooksAdmin(books, id) {
 	const list = document.getElementById(id);
-	list.innerHTML = "";
 	let i = 0;
 	books.forEach((book) => {
 		const item = document.createElement("div");
@@ -43,6 +42,7 @@ async function loadHTML(id, url) {
 loadHTML("head", "./head.html");
 
 GetBooksAdmin("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/Books.json", "listBooks");
+GetBooksAdmin("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/newBooks.json", "listBooks");
 function showPopup(message, pop, popMSG) {
 	const popup = document.getElementById(pop);
 	const msg = document.getElementById(popMSG);
@@ -73,9 +73,13 @@ function removeBook(i) {
 
 async function countBooks() {
 	try {
-		const resBooks = await fetch("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/Books.json");
+		const resBooks = await fetch(
+			"https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/Books.json"
+		);
 		const books = await resBooks.json();
-		const resNewBooks = await fetch("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/newBooks.json");
+		const resNewBooks = await fetch(
+			"https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/newBooks.json"
+		);
 		const newBooks = await resNewBooks.json();
 		const total = books.length + newBooks.length;
 		const block = document.getElementsByClassName("block")[0];
@@ -88,7 +92,9 @@ countBooks();
 
 async function countUser() {
 	try {
-		const resUser = await fetch("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/admin/user.json");
+		const resUser = await fetch(
+			"https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/admin/user.json"
+		);
 		const user = await resUser.json();
 		const block = document.getElementsByClassName("block")[1];
 		block.innerHTML = `<h1>Tổng user: ${user.length}</h1>`;
@@ -99,7 +105,9 @@ async function countUser() {
 countUser();
 async function renderUser() {
 	try {
-		const resUsers = await fetch("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/admin/user.json");
+		const resUsers = await fetch(
+			"https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/admin/user.json"
+		);
 		const users = await resUsers.json();
 		const elUsers = document.getElementById("user");
 		users.forEach((user) => {
