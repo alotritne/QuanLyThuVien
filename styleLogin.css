@@ -16,7 +16,7 @@ body {
 }
 .form {
 	width: 15%;
-	height: 30%;
+	height: 50%;
 	background: rgba(255, 255, 255, 0.8);
 	backdrop-filter: blur(10px);
 	border-radius: 20px;
@@ -36,9 +36,7 @@ h1 {
 	font-size: 20px;
 }
 
-#username,
-#password,
-#passwordCF {
+.input input {
 	width: 100%;
 	margin-bottom: 10px;
 	font-size: 150%;
@@ -47,6 +45,21 @@ h1 {
 	padding-left: 10px;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.input select {
+	width: auto;
+	height: 40px;
+	margin-bottom: 12px;
+	font-size: 17px;
+	border: 1px solid #096b68;
+	border-radius: 12px;
+	padding-left: 10px;
+}
 button {
 	font-size: 100%;
 	width: 100%;
