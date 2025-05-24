@@ -116,6 +116,7 @@ async function renderUser() {
 			item.innerHTML = `
 					<img src="${user.img}" alt=""/>
 					<h3>User: ${user.username}</h3>
+					<h3>Khoa: ${user.khoa}</h3>
 					<h3>Sách đã mượn: ${user.book}</h3>
 					<h3>Ngày trả: ${user.date}</h3>
 					<h3>Địa chi: ${user.address}</h3>
