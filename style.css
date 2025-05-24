@@ -41,6 +41,7 @@ body {
 	justify-content: center;
 	height: 90px;
 }
+
 h2 {
 	color: #096b68;
 	font-size: 35px;
@@ -412,5 +413,5 @@ textarea {
 }
 .Book a {
 	text-decoration: none;
-	color: #064240;
+	color: #096b68;
 }

@@ -102,6 +102,22 @@ async function login() {
 	}
 }
 
+function register() {
+	const username = document.getElementById("username").value;
+	const password = document.getElementById("password").value;
+	const passwordCF = document.getElementById("passwordCF").value;
+	if (password === passwordCF) {
+		const user = {
+			username: username,
+			password: password,
+			role: "user",
+		};
+		const users = JSON.parse(localStorage.getItem("loggedInUser")) || [];
+		users.push(user);
+		localStorage.setItem("loggedInUser", JSON.stringify(users));
+		window.location.href = "./home.html";
+	}
+}
 function logout() {
 	localStorage.removeItem("loggedInUser");
 	window.location.href = "./login.html";
@@ -135,7 +151,9 @@ async function addBook() {
 					<br>
 					<p style="font-size: 17px">Còn lại: ${quality}</p>
 					<br>
-					<button ${quality === 0 ? "disabled" : "class='Borrow available'"} ${quality === 0 ? "" : `onclick = "alert('Mượn thành công ${name}')"`}>${quality === 0 ? "Hết sách" : "Mượn ngay"}</button>
+					<button ${quality === 0 ? "disabled" : "class='Borrow available'"} ${
+		quality === 0 ? "" : `onclick = "alert('Mượn thành công ${name}')"`
+	}>${quality === 0 ? "Hết sách" : "Mượn ngay"}</button>
 					<br>
 `;
 	el.append(div);
@@ -143,7 +161,9 @@ async function addBook() {
 
 async function renderInfor() {
 	try {
-		const resUsers = await fetch("https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/admin/user.json");
+		const resUsers = await fetch(
+			"https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/admin/user.json"
+		);
 		const users = await resUsers.json();
 		const elUsers = document.getElementById("info");
 		users.forEach((user) => {

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styleLogin.css" />
+		<title>Thư viện HIU</title>
+		<script>
+			const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+			if (loggedInUser) {
+				window.location.href = "./home.html";
+			}
+		</script>
+	</head>
+	<body>
+		<div class="form">
+			<h1>Login</h1>
+			<div class="input">
+				<input id="username" type="text" placeholder="Username" required />
+				<input id="password" type="password" placeholder="Password" required />
+			</div>
+			<button onclick="login()">Login</button>
+		</div>
+		<script src="script.js"></script>
+	</body>
+</html>
