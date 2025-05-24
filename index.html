@@ -3,9 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="style.css" />
 		<link rel="stylesheet" href="styleLogin.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 		<title>Thư viện HIU</title>
 		<script>
 			const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -14,16 +12,14 @@
 			}
 		</script>
 	</head>
-	<body class="background">
-		<div class="content">
-			<div class="form">
-				<h1>Login</h1>
-				<div class="input">
-					<input id="username" type="text" placeholder="Username" required />
-					<input id="password" type="password" placeholder="Password" required />
-				</div>
-				<button onclick="login()">Login</button>
+	<body>
+		<div class="form">
+			<h1>Login</h1>
+			<div class="input">
+				<input id="username" type="text" placeholder="Username" required />
+				<input id="password" type="password" placeholder="Password" required />
 			</div>
+			<button onclick="login()">Login</button>
 		</div>
 		<script src="script.js"></script>
 	</body>
