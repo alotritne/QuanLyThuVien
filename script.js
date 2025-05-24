@@ -120,7 +120,7 @@ function register() {
 }
 function logout() {
 	localStorage.removeItem("loggedInUser");
-	window.location.href = "./login.html";
+	window.location.href = "./index.html";
 }
 
 async function loadHTML(id, url) {
