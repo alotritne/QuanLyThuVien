@@ -104,31 +104,53 @@ async function countUser() {
 }
 countUser();
 async function renderUser() {
+	const khoa = {
+		CNKT: "Khoa Công nghệ - Kỹ thuật",
+		KTQT: "Khoa Kinh tế - Quản trị",
+		NNVVHQT: "Khoa Ngôn ngữ và văn hóa quốc tế",
+		Y: "Khoa Y",
+		DUOC: "Khoa Dược",
+		RHM: "Khoa Răng Hàm Mặt",
+		DDHS: "Khoa Điều dưỡng – Hộ sinh",
+		XNYH: "Khoa Xét Nghiệm Y Học",
+		KTPHCN: "Khoa Kỹ thuật Phục hồi chức năng",
+		KHXH: "Khoa Khoa học Xã hội",
+	};
+
+	const khoaValue = document.getElementById("khoa").value;
+	const elUsers = document.getElementById("user");
+	elUsers.innerHTML = "";
+
 	try {
 		const resUsers = await fetch(
 			"https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/admin/user.json"
 		);
 		const users = await resUsers.json();
-		const elUsers = document.getElementById("user");
+
 		users.forEach((user) => {
+			if (khoaValue !== "all" && user.khoa !== khoa[khoaValue]) {
+				return;
+			}
+
 			const item = document.createElement("div");
 			item.className = `blockUser textLeft`;
 			item.innerHTML = `
-					<img src="${user.img}" alt=""/>
-					<h3>User: ${user.username}</h3>
-					<h3>Khoa: ${user.khoa}</h3>
-					<h3>Sách đã mượn: ${user.book}</h3>
-					<h3>Ngày trả: ${user.date}</h3>
-					<h3>Địa chi: ${user.address}</h3>
-					<h3>Số điện thoại: ${user.phone}</h3>
+				<img src="${user.img}" alt=""/>
+				<h3>User: ${user.username}</h3>
+				<h3>Khoa: ${user.khoa}</h3>
+				<h3>Sách đã mượn: ${user.book}</h3>
+				<h3>Ngày trả: ${user.date}</h3>
+				<h3>Địa chỉ: ${user.address}</h3>
+				<h3>Số điện thoại: ${user.phone}</h3>
 			`;
 			elUsers.appendChild(item);
 		});
 	} catch (error) {
-		console.log(error);
+		console.log("Lỗi khi tải dữ liệu:", error);
 	}
 }
 renderUser();
+
 function logout() {
 	localStorage.removeItem("loggedInUser");
 	window.location.href = "./login.html";

@@ -19,6 +19,22 @@
 		<hr />
 		<div class="content">
 			<h1>Quản lý user</h1>
+			<h2>Sắp xếp</h2>
+			<br />
+			<select name="khoa" id="khoa" onchange="renderUser()">
+				<option value="all" selected>All</option>
+				<option value="CNKT">Khoa Công nghệ - Kỹ thuật</option>
+				<option value="KTQT">Khoa Kinh tế - Quản trị</option>
+				<option value="NNVVHQT">Khoa Ngôn ngữ và văn hóa quốc tế</option>
+				<option value="Y">Khoa Y</option>
+				<option value="DUOC">Khoa Dược</option>
+				<option value="RHM">Khoa Răng Hàm Mặt</option>
+				<option value="DDHS">Khoa Điều dưỡng – Hộ sinh</option>
+				<option value="XNYH">Khoa Xét Nghiệm Y Học</option>
+				<option value="KTPHCN">Khoa Kỹ thuật Phục hồi chức năng</option>
+				<option value="KHXH">Khoa Khoa học Xã hội</option>
+			</select>
+			<br />
 			<div id="user"></div>
 		</div>
 		<script src="admin.js"></script>
