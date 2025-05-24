@@ -40,7 +40,7 @@ body {
 	background: linear-gradient(20deg, rgba(9, 107, 104, 1) 0%, rgba(18, 153, 144, 1) 50%, rgba(144, 209, 202, 1) 100%);
 }
 
-.right img {
+.left img {
 	height: 100vh;
 	border-radius: 20px;
 }
@@ -54,7 +54,7 @@ body {
 .title {
 	color: #fffbde;
 	font-size: 200%;
-	margin-top: 250px;
+	margin-top: 270px;
 	margin-left: 100px;
 }
 
