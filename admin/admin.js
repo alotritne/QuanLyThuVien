@@ -115,6 +115,7 @@ async function renderUser() {
 		XNYH: "Khoa Xét Nghiệm Y Học",
 		KTPHCN: "Khoa Kỹ thuật Phục hồi chức năng",
 		KHXH: "Khoa Khoa học Xã hội",
+		GDTC: "Bộ môn Giáo dục thể chất",
 	};
 
 	const khoaValue = document.getElementById("khoa").value;
