@@ -117,17 +117,14 @@ async function renderUser() {
 		KHXH: "Khoa Khoa học Xã hội",
 		GDTC: "Bộ môn Giáo dục thể chất",
 	};
-
 	const khoaValue = document.getElementById("khoa").value;
 	const elUsers = document.getElementById("user");
 	elUsers.innerHTML = "";
-
 	try {
 		const resUsers = await fetch(
 			"https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/admin/user.json"
 		);
 		const users = await resUsers.json();
-
 		users.forEach((user) => {
 			if (khoaValue !== "all" && user.khoa !== khoa[khoaValue]) {
 				return;
