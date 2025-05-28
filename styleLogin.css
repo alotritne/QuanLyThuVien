@@ -132,3 +132,15 @@ button:hover {
         height: 40px;
     }
 }
+
+html,
+body {
+    overflow: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}

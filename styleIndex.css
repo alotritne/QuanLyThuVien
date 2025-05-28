@@ -27,6 +27,19 @@ body {
     padding: 10px 0;
 }
 
+html,
+body {
+    overflow: hidden;
+    height: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .navIndex a {
     text-decoration: none;
     color: #fffbde;
