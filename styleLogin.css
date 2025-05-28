@@ -18,6 +18,7 @@ body {
         rgba(18, 153, 144, 1) 50%,
         rgba(144, 209, 202, 1) 100%
     );
+    padding: 20px;
 }
 .form {
     width: 15%;
@@ -48,6 +49,7 @@ h1 {
     border: 1px solid #096b68;
     border-radius: 12px;
     padding-left: 10px;
+    box-sizing: border-box;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -57,27 +59,31 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .input select {
-    width: auto;
+    width: 100%;
     height: 40px;
     margin-bottom: 12px;
-    font-size: 17px;
+    font-size: 100%;
     border: 1px solid #096b68;
     border-radius: 12px;
     padding-left: 10px;
-}
-button {
-    font-size: 100%;
-    width: 100%;
-    height: 40px;
-    margin-top: 15px;
-    background-color: #096b68;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: bold;
+    box-sizing: border-box;
 }
 
+button {
+    width: 100%;
+    height: 40px;
+    border-radius: 12px;
+    border: none;
+    background-color: #096b68;
+    color: white;
+    font-size: 180%;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+button:hover {
+    background-color: #064d4a;
+}
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -88,14 +94,41 @@ button {
         transform: translateY(0);
     }
 }
-@media only screen and (max-width: 768px) {
-    .content {
-        max-width: 95%;
+
+@media (max-width: 768px) {
+    .form {
+        width: 80%;
+        padding: 30px;
+    }
+    h1 {
+        font-size: 40px;
+    }
+    .input input,
+    .input select {
+        font-size: 120%;
+        padding: 8px;
+    }
+    button {
+        font-size: 150%;
+        height: 45px;
     }
 }
 
-@media only screen and (max-width: 480px) {
-    .content {
-        max-width: 100%;
+@media (max-width: 480px) {
+    .form {
+        width: 95%;
+        padding: 20px;
+    }
+    h1 {
+        font-size: 30px;
+    }
+    .input input,
+    .input select {
+        font-size: 100%;
+        padding: 7px;
+    }
+    button {
+        font-size: 120%;
+        height: 40px;
     }
 }

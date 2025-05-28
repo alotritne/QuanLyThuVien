@@ -7,7 +7,8 @@
 body {
     width: 100%;
     height: 100vh;
-    overflow-y: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .navIndex {
     text-align: right;
@@ -22,6 +23,8 @@ body {
         rgba(144, 209, 202, 1) 100%
     );
     height: 60px;
+    flex-wrap: wrap;
+    padding: 10px 0;
 }
 
 .navIndex a {
@@ -30,12 +33,14 @@ body {
     font-weight: bold;
     transition: background-color 0.2s;
     margin-right: 60px;
+    padding: 10px 15px;
 }
 .navIndex a:hover {
     color: #096b68;
 }
 .content {
     display: flex;
+    flex-direction: row;
     background: #096b68;
     background: linear-gradient(
         20deg,
@@ -43,56 +48,49 @@ body {
         rgba(18, 153, 144, 1) 50%,
         rgba(144, 209, 202, 1) 100%
     );
+    min-height: calc(100vh - 60px);
+}
+
+.left {
+    width: 50%;
+    height: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .left img {
     height: 100vh;
     border-radius: 20px;
     min-height: auto;
+    max-width: 100%;
+    width: auto;
+    object-fit: cover;
 }
 
-.left {
+.right {
     width: 50%;
-    height: 100vh;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .title {
     color: #fffbde;
     font-size: 200%;
-    margin-top: 270px;
+    margin-top: 0;
     margin-left: 100px;
     animation: fadeIn 0.5s ease;
 }
 
 .description {
     color: #ffffff;
-    width: 80vh;
+    width: 80%;
     margin-left: 100px;
-    margin-top: 20px;
-    font-size: 20px;
     animation: fadeIn 0.5s ease;
-}
-#name {
-    color: #fff1de;
-}
-#name::after {
-    content: "|";
-    animation: blink 0.7s infinite;
-}
-
-@keyframes blink {
-    0%,
-    100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-}
-
-hr {
-    border: 1px solid #0e8d89;
+    line-height: 1.6;
 }
 
 @keyframes fadeIn {
@@ -105,14 +103,60 @@ hr {
         transform: translateY(0);
     }
 }
-@media only screen and (max-width: 768px) {
+
+@media (max-width: 768px) {
+    .navIndex {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        height: auto;
+        padding: 15px 0;
+    }
+    .navIndex a {
+        margin: 5px auto;
+        width: fit-content;
+    }
+
     .content {
-        max-width: 95%;
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .left,
+    .right {
+        width: 100%;
+        text-align: center;
+    }
+
+    .left img {
+        height: auto;
+        max-height: 50vh;
+        margin-bottom: 20px;
+        border-radius: 0;
+    }
+
+    .title {
+        margin-top: 30px;
+        margin-left: 0;
+        font-size: 150%;
+        text-align: center;
+    }
+
+    .description {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 90%;
+        padding-bottom: 20px;
+        text-align: center;
     }
 }
 
-@media only screen and (max-width: 480px) {
-    .content {
-        max-width: 100%;
+@media (max-width: 480px) {
+    .title {
+        font-size: 120%;
+    }
+    .description {
+        font-size: 85%;
     }
 }
