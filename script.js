@@ -8,16 +8,66 @@ function showPopup(message, pop, popMSG) {
 function closePopup(popup) {
     document.getElementById(popup).style.display = "none";
 }
-function MuonSach(name) {
+function MuonSach(name, id) {
     showPopup(
         `Bạn có chắc chắn muốn mượn ${name} không? `,
         "popup-Confirm",
         "popup-Confirm-message"
     );
+
+    document.querySelector("#popup-Confirm button:nth-of-type(1)").onclick =
+        function () {
+            DongY(id);
+        };
 }
-function DongY() {
+async function DongY(id) {
     closePopup("popup-Confirm");
     showPopup("Mượn thành công", "popup", "popup-message");
+
+    let books = JSON.parse(localStorage.getItem("books")) || [];
+
+    if (books.length === 0) {
+        try {
+            const res = await fetch(
+                "https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/Books.json"
+            );
+            books = await res.json();
+            localStorage.setItem("books", JSON.stringify(books));
+        } catch (e) {
+            console.error("Không thể lấy danh sách sách:", e);
+        }
+    }
+
+    let user = JSON.parse(localStorage.getItem("loggedInUser"));
+
+    if (!user) {
+        alert("Vui lòng đăng nhập trước khi mượn sách");
+        closePopup("popup");
+        return;
+    }
+
+    if (!user.book) {
+        user.book = [];
+    }
+
+    if (!user.book.includes(id)) {
+        user.book.push(id);
+    }
+
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    const index = users.findIndex((u) => u.username === user.username);
+    if (index !== -1) {
+        users[index] = user;
+        localStorage.setItem("users", JSON.stringify(users));
+    }
+
+    const bookIndex = books.findIndex((b) => b.id === id);
+    if (bookIndex !== -1 && books[bookIndex].available > 0) {
+        books[bookIndex].available--;
+        localStorage.setItem("books", JSON.stringify(books));
+    }
 }
 async function GetBooks(url, id) {
     try {
@@ -46,7 +96,7 @@ function renderBooks(books, id) {
     ${
         book.available === 0
             ? "disabled"
-            : `class="Borrow available" onclick='MuonSach("${book.name}")'`
+            : `class="Borrow available" onclick='MuonSach("${book.name}", "${book.id}")'`
     }
   >
     ${book.available === 0 ? "Hết sách" : "Mượn ngay"}
@@ -124,15 +174,23 @@ function register() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     const passwordCF = document.getElementById("passwordCF").value;
+    const fullName = document.getElementById("fullName").value;
+    const phone = document.getElementById("phone").value;
+    const Khoa = document.getElementById("Khoa").value;
+    const address = document.getElementById("address").value;
+
     if (password === passwordCF) {
         const user = {
             username: username,
             password: password,
             role: "user",
+            name: fullName,
+            phone: phone,
+            khoa: Khoa,
+            address: address,
+            book: [],
         };
-        const users = JSON.parse(localStorage.getItem("loggedInUser")) || [];
-        users.push(user);
-        localStorage.setItem("loggedInUser", JSON.stringify(users));
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
         window.location.href = "./home.html";
     }
 }
@@ -154,64 +212,149 @@ async function loadHTML(id, url) {
     }
 }
 
-async function addBook() {
-    const name = document.getElementById("name").value;
-    const author = document.getElementById("author").value;
-    const img = document.getElementById("img").value;
-    const quality = document.getElementById("quality").value;
-    const el = document.getElementById("addSach");
-    const div = document.createElement("div");
-    div.className = "Book";
-    div.innerHTML = `
-					<h1>Thêm thành công</h1>
-					<img src="${img}" alt="" style="height: 250px"/>
-					<h3>${name}</h3>
-					<br>
-					<p style="font-size: 17px">Còn lại: ${quality}</p>
-					<br>
-					<button ${quality === 0 ? "disabled" : "class='Borrow available'"} ${
-        quality === 0 ? "" : `onclick = "alert('Mượn thành công ${name}')"`
-    }>${quality === 0 ? "Hết sách" : "Mượn ngay"}</button>
-					<br>
-`;
-    el.append(div);
-}
-
 async function renderInfor() {
+    const elUsers = document.getElementById("info");
+    const loggedInUserRaw = localStorage.getItem("loggedInUser");
+    if (!loggedInUserRaw) {
+        elUsers.innerHTML = "<p>Vui lòng đăng nhập để xem thông tin.</p>";
+        return;
+    }
+
+    let loggedInUser;
+    try {
+        loggedInUser = JSON.parse(loggedInUserRaw);
+        if (Array.isArray(loggedInUser)) {
+            loggedInUser = loggedInUser[0];
+        }
+    } catch {
+        elUsers.innerHTML = "<p>Dữ liệu người dùng không hợp lệ.</p>";
+        return;
+    }
+
+    const booksRaw = localStorage.getItem("books");
+    let books = [];
+    if (booksRaw) {
+        try {
+            books = JSON.parse(booksRaw);
+        } catch {
+            books = [];
+        }
+    }
+
     try {
         const resUsers = await fetch(
             "https://raw.githubusercontent.com/alotritne/QuanLyThuVien/refs/heads/main/admin/user.json"
         );
         const users = await resUsers.json();
-        const elUsers = document.getElementById("info");
-        const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-        users.forEach((user) => {
-            if (user.username === loggedInUser.username) {
-                elUsers.innerHTML = `
-                    <div class="profile-card">
-                        <div class="profile-header">
-                            <h3 class="username">${user.name}</h3>
-                            <p class="faculty">${user.khoa}</p>
-                        </div>
-                        <h5 class="card-title">Thông tin chi tiết</h5>
-                        <table class="info-table">
-                            <tr><th>Tên đăng nhập</th><td>${user.username}</td></tr>
-                            <tr><th>Sách đã mượn</th><td>${user.book}</td></tr>
-                            <tr><th>Ngày trả</th><td>${user.date}</td></tr>
-                            <tr><th>Địa chỉ</th><td>${user.address}</td></tr>
-                            <tr><th>Số điện thoại</th><td>${user.phone}</td></tr>
-                            
-                        </table>
-                    </div>
-                `;
+        const userFromGit = users.find(
+            (user) => user.username === loggedInUser.username
+        );
+
+        let userToShow = userFromGit || loggedInUser;
+
+        let borrowedBooksInfo = "Chưa mượn sách nào";
+
+        if (
+            userToShow.book &&
+            Array.isArray(userToShow.book) &&
+            userToShow.book.length > 0
+        ) {
+            const borrowedBooks = books.filter((book) =>
+                userToShow.book.includes(String(book.id))
+            );
+            if (borrowedBooks.length > 0) {
+                borrowedBooksInfo = borrowedBooks
+                    .map((book) => book.name)
+                    .join(", ");
             }
-        });
+        } else if (
+            typeof userToShow.book === "string" &&
+            userToShow.book !== ""
+        ) {
+            borrowedBooksInfo = userToShow.book;
+        }
+
+        elUsers.innerHTML = `
+            <div class="profile-card">
+                <div class="profile-header">
+                    <h3 class="username">${
+                        userToShow.name || userToShow.username
+                    }</h3>
+                    <p class="faculty">${userToShow.khoa || ""}</p>
+                </div>
+                <h5 class="card-title">Thông tin chi tiết</h5>
+                <table class="info-table">
+                    <tr><th>Tên đăng nhập</th><td>${
+                        userToShow.username
+                    }</td></tr>
+                    <tr><th>Sách đã mượn</th><td>${borrowedBooksInfo}</td></tr>
+                    <tr><th>Ngày trả</th><td>${
+                        userToShow.date || "Chưa có"
+                    }</td></tr>
+                    <tr><th>Địa chỉ</th><td>${
+                        userToShow.address || ""
+                    }</td></tr>
+                    <tr><th>Số điện thoại</th><td>${
+                        userToShow.phone || ""
+                    }</td></tr>
+                </table>
+            </div>
+        `;
     } catch (error) {
-        console.error("Lỗi khi tải thông tin người dùng:", error);
+        console.error("Lỗi khi tải dữ liệu người dùng:", error);
+
+        let userToShow = loggedInUser;
+
+        let borrowedBooksInfo = "Chưa mượn sách nào";
+        if (
+            userToShow.book &&
+            Array.isArray(userToShow.book) &&
+            userToShow.book.length > 0
+        ) {
+            const borrowedBooks = books.filter((book) =>
+                userToShow.book.includes(String(book.id))
+            );
+            if (borrowedBooks.length > 0) {
+                borrowedBooksInfo = borrowedBooks
+                    .map((book) => book.name)
+                    .join(", ");
+            }
+        } else if (
+            typeof userToShow.book === "string" &&
+            userToShow.book !== ""
+        ) {
+            borrowedBooksInfo = userToShow.book;
+        }
+
+        elUsers.innerHTML = `
+            <div class="profile-card">
+                <div class="profile-header">
+                    <h3 class="username">${
+                        userToShow.name || userToShow.username
+                    }</h3>
+                    <p class="faculty">${userToShow.khoa || ""}</p>
+                </div>
+                <h5 class="card-title">Thông tin chi tiết</h5>
+                <table class="info-table">
+                    <tr><th>Tên đăng nhập</th><td>${
+                        userToShow.username
+                    }</td></tr>
+                    <tr><th>Sách đã mượn</th><td>${borrowedBooksInfo}</td></tr>
+                    <tr><th>Ngày trả</th><td>${
+                        userToShow.date || "Chưa có"
+                    }</td></tr>
+                    <tr><th>Địa chỉ</th><td>${
+                        userToShow.address || ""
+                    }</td></tr>
+                    <tr><th>Số điện thoại</th><td>${
+                        userToShow.phone || ""
+                    }</td></tr>
+                </table>
+            </div>
+        `;
     }
 }
-
 function capitalizeWords(str) {
     return str
         .split(" ")

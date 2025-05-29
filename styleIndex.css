@@ -98,6 +98,9 @@ body::-webkit-scrollbar {
     animation: fadeIn 0.5s ease;
 }
 
+#name {
+    height: 100px;
+}
 .description {
     color: #ffffff;
     width: 80%;
@@ -106,6 +109,24 @@ body::-webkit-scrollbar {
     line-height: 1.6;
 }
 
+#name::after {
+    content: "|";
+    animation: blink 1s infinite;
+    margin-left: 5px;
+    color: #fffbde;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 @keyframes fadeIn {
     from {
         opacity: 0;

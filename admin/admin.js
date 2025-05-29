@@ -177,3 +177,25 @@ function logout() {
     localStorage.removeItem("loggedInUser");
     window.location.href = "./index.html";
 }
+async function addBook() {
+    const name = document.getElementById("name").value;
+    const author = document.getElementById("author").value;
+    const img = document.getElementById("img").value;
+    const quality = document.getElementById("quality").value;
+    const el = document.getElementById("addSach");
+    const div = document.createElement("div");
+    div.className = "Booknew";
+    div.innerHTML = `
+					<h1>Thêm thành công</h1>
+					<img src="${img}" alt="" style="height: 250px"/>
+					<h3>${name}</h3>
+					<br>
+					<p style="font-size: 17px">Còn lại: ${quality}</p>
+					<br>
+					<button ${quality === 0 ? "disabled" : "class='Borrow available'"} ${
+        quality === 0 ? "" : `onclick = "alert('Mượn thành công ${name}')"`
+    }>${quality === 0 ? "Hết sách" : "Mượn ngay"}</button>
+					<br>
+`;
+    el.append(div);
+}
