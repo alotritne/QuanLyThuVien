@@ -66,6 +66,8 @@ GetBooks(
 );
 
 loadHTML("head", "./components/head.html");
+loadHTML("foot", "./components/foot.html");
+
 const newBooks = document.getElementById("newBooks");
 const leftBtn = document.querySelector(".left-btn");
 const rightBtn = document.querySelector(".right-btn");

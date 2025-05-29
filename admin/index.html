@@ -1,30 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="../style.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-		<link rel="stylesheet" href="styleAdmin.css" />
-		<title>Thư viện HIU</title>
-		<script>
-			const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-			if (!loggedInUser || loggedInUser.role !== "admin") {
-				window.location.href = "../home.html";
-			}
-		</script>
-	</head>
-	<body>
-		<div id="head"></div>
-		<hr />
-		<div class="content">
-			<div class="block" style="background-color: #096b68; color: antiquewhite">
-				<h1>Tổng số sách:</h1>
-			</div>
-			<div class="block" style="background-color: antiquewhite; color: #096b68">
-				<h1>Tổng user:</h1>
-			</div>
-		</div>
-		<script src="admin.js"></script>
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        />
+        <link rel="stylesheet" href="styleAdmin.css" />
+        <title>Thư viện HIU</title>
+        <script>
+            const loggedInUser = JSON.parse(
+                localStorage.getItem("loggedInUser")
+            );
+            if (!loggedInUser || loggedInUser.role !== "admin") {
+                window.location.href = "../home.html";
+            }
+        </script>
+    </head>
+    <body>
+        <div id="head"></div>
+        <hr />
+        <div class="content">
+            <div
+                class="block"
+                style="background-color: #096b68; color: antiquewhite"
+            >
+                <h1>Tổng số sách:</h1>
+            </div>
+            <div
+                class="block"
+                style="background-color: antiquewhite; color: #096b68"
+            >
+                <h1>Tổng user:</h1>
+            </div>
+        </div>
+        <div id="foot"></div>
+
+        <script src="admin.js"></script>
+    </body>
 </html>
